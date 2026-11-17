@@ -113,7 +113,8 @@ a:hover { text-decoration-thickness: 2px; }
 .contours {
   position: absolute;
   top: 50%;
-  right: 0;
+  /* stay near the content column on very wide screens */
+  right: max(0px, calc((100% - var(--max)) / 2 - 10rem));
   height: max(150%, 52rem);
   width: auto;
   aspect-ratio: 104 / 200;
@@ -168,42 +169,8 @@ a:hover { text-decoration-thickness: 2px; }
   100%    { opacity: 1; }
 }
 
-.paused .ripple,
-.paused .ripple * { animation-play-state: paused; }
-
-.motion-toggle {
-  position: absolute;
-  left: max(var(--gutter), calc((100% - var(--max)) / 2));
-  bottom: 1.5rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 0.85rem;
-  font: inherit;
-  font-size: 0.8125rem;
-  color: var(--muted);
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  cursor: pointer;
-}
-.motion-toggle:hover { color: var(--ink); border-color: var(--muted); }
-
-.motion-icon {
-  width: 8px;
-  height: 10px;
-  border-inline: 3px solid currentColor;
-}
-.paused .motion-icon {
-  width: 0;
-  border-inline: 0;
-  border-block: 5px solid transparent;
-  border-left: 8px solid currentColor;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .ripple, .ripple * { animation-play-state: paused; }
-  .motion-toggle { display: none; }
 }
 
 /* ---------- Sections ---------- */
